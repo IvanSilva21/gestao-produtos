@@ -16,6 +16,9 @@ public class ProdutoRequestDTO {
     @DecimalMin(value = "0", message = "Quantidade não pode ser negativa")
     private int quantidade;
 
+    public ProdutoRequestDTO(String teclado, BigDecimal bigDecimal, int i) {
+    }
+
     public String getNome() {
 
         return nome;
