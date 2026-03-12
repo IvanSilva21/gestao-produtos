@@ -5,6 +5,7 @@ import com.example.gestao_produtos.dto.request.ProdutoPatchRequestDTO;
 import com.example.gestao_produtos.dto.request.ProdutoRequestDTO;
 import com.example.gestao_produtos.dto.response.ProdutoResponseDTO;
 import com.example.gestao_produtos.service.ProdutoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +15,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
+@Tag(name = "Produtos", description = "Endpoints para gerenciamento de produtos")
 public class ProdutoController {
 
     private final ProdutoService service;
@@ -29,6 +33,7 @@ public class ProdutoController {
     }
 
     @PostMapping
+    @Operation(summary = "Castradar produto")
     public ResponseEntity<ProdutoResponseDTO> salvar(
             @RequestBody @Valid ProdutoRequestDTO dto
     ) {
@@ -48,6 +53,7 @@ public class ProdutoController {
 
 
     @GetMapping("/{id}")
+    @Operation(summary = "Buscar produto por Id")
     public ResponseEntity<ProdutoResponseDTO> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
